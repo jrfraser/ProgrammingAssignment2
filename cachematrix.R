@@ -2,6 +2,11 @@
 ## functions do
 
 ## Write a short comment describing this function
+#I don't honestly totally understand what this function is doing
+#I just mostly used the example code and modified it to work for our slightly 
+#different problem. Vectors and matricies are pretty similar.
+#from what I undertand the makeCacheMatrix function creates and enviroment  that
+#both the matrix that you provide and it's inverse are stored.
 
 makeCacheMatrix <- function(x = matrix()) {
   # first create the inverse property like in vector example
@@ -27,19 +32,21 @@ makeCacheMatrix <- function(x = matrix()) {
 
 
 ## Write a short comment describing this function
+#this is the function that we create to first check to see if the inverse has 
+#already been calculated. If it has not then it calculates the inverse.
 
 cacheSolve <- function(x, ...) {
         ## Return a matrix that is the inverse of 'x'
   
   inv <- x$getInverse()  # Retrieve the cached inverse if it exists
   
-  # If the inverse is already cached, return it
+  # If the inverse is already cached, we return it
   if (!is.null(inv)) {
     message("getting cached data")
     return(inv)
   }
   
-  # If the inverse is not cached, calculate it
+  # If the inverse is not cached, we calculate it
   mat <- x$get()  # Get the matrix
   inv <- solve(mat, ...)  # Compute the inverse using the solve function
   x$setInverse(inv)  # Cache the computed inverse
@@ -47,18 +54,22 @@ cacheSolve <- function(x, ...) {
   inv  # Return the inverse
 }
 
+#overall these two functions just allow you to store an inverse matrix without
+#having to recalculate it if you don't need to.
+
+#testing the fuunctions
 # Create a matrix
-m <- matrix(c(1, 2, 3, 4), 2, 2)
+#m <- matrix(c(1, 2, 3, 4), 2, 2)
 
 # Create the special "matrix" object that can cache its inverse
-cacheMatrix <- makeCacheMatrix(m)
+#cacheMatrix <- makeCacheMatrix(m)
 
 # Compute the inverse of the matrix and cache it
-inverse1 <- cacheSolve(cacheMatrix)
+#inverse1 <- cacheSolve(cacheMatrix)
 
 # Retrieve the cached inverse without recalculating
-inverse2 <- cacheSolve(cacheMatrix)
+#inverse2 <- cacheSolve(cacheMatrix)
 
 # Print the results
-print(inverse1)
-print(inverse2)
+#print(inverse1)
+#print(inverse2)
